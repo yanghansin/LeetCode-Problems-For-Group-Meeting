@@ -1,5 +1,5 @@
 """ Author: Nahai Gu
-    Date: 12/16/2023
+    Date: 11/16/2023
     LeetCode 21. Merge Two Sorted Lists (input as arrays)
 """
 
