@@ -1,3 +1,7 @@
+/* By Han Yang
+    11/27/2023
+    LeetCode 64 minPathSum
+*/
 public class MinimumPathSumSolution {
     public static int minPathSum(int[][] grid){
         int rows = grid.length;
