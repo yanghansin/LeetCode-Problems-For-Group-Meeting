@@ -17,6 +17,8 @@
  * Maximum Score out of all path: 5
  */
 
+import java.util.Random;
+
 public class MaximumPathScoreSolution {
     public static int maxScore(int[][] grid) {
         int rows = grid.length;
@@ -43,8 +45,28 @@ public class MaximumPathScoreSolution {
 
     public static void main(String[] args) {
         int[][] test_grid = {{5, 2, 3}, {6, 3, 1}, {5, 7, 8}};
-        int[][] test_grid2 = {{10, 2, 3}, {4, 5, 6}};
         System.out.println(maxScore(test_grid));
-        System.out.println(maxScore(test_grid2));
+        int[][] randomMatrix = new int[5][5];
+
+        // Create a Random object
+        Random random = new Random();
+
+        // Fill the matrix with random numbers in the range 15-30
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                // Generate a random number between 15 and 30 (inclusive)
+                int randomNumber = random.nextInt(16) + 15;
+                randomMatrix[i][j] = randomNumber;
+            }
+        }
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                System.out.print(randomMatrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+
+        System.out.println(maxScore(randomMatrix));
     }
 }
