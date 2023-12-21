@@ -1,3 +1,6 @@
+// LeetCode 31, Next Permutation
+// By Han Yang
+// 2023/12/21
 public class NextPermutation {
     
     public static void NextPermutationSolution(int[] nums) {
