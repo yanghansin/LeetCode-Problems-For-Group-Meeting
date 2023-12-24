@@ -1,5 +1,6 @@
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.StringJoiner;
@@ -26,6 +27,32 @@ class TreeNode {
     }
 }
 public class TreeProblems {
+
+    public static void preOrder(TreeNode root) {
+        if (root != null) {
+            System.out.print(root.val + " ");
+            preOrder(root.left);
+            preOrder(root.right);
+        }
+    }
+
+    // Function to print the in-order traversal of a binary tree
+    public static void inOrder(TreeNode root) {
+        if (root != null) {
+            inOrder(root.left);
+            System.out.print(root.val + " ");
+            inOrder(root.right);
+        }
+    }
+
+    // Function to print the post-order traversal of a binary tree
+    public static void postOrder(TreeNode root) {
+        if (root != null) {
+            postOrder(root.left);
+            postOrder(root.right);
+            System.out.print(root.val + " ");
+        }
+    }
 
     // P1, get the height of tree by BFS
     public static int HeightOfTreeBFS(TreeNode root) {
@@ -174,6 +201,75 @@ public class TreeProblems {
     }
 
 
+    // Question1 Largest Value in Each Level
+    public static List<Integer> getLargestValues(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+
+        while (!q.isEmpty()) {
+            int size = q.size();
+            int max = Integer.MIN_VALUE;
+
+            for (int i = 0; i < size; i++) {
+                TreeNode current = q.poll();
+                max = Math.max(current.val, max);
+
+                if (current.left != null) {
+                    q.offer(current.left);
+                }
+
+                if (current.right != null) {
+                    q.offer(current.right);
+                }
+            }
+            res.add(max);
+        }
+
+        return res;
+    }
+
+    // 5 min 21
+
+
+    // Question 3: Identical Trees
+    public static boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null) {
+            return true;
+        }
+
+        if (p == null || q == null || p.val != q.val) {
+            return false;
+        }
+
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
+
+    // Question 4: Mirror the Tree
+    public static TreeNode invertTree(TreeNode root) {
+        if (root == null) {
+            return root;
+        }
+
+        TreeNode temp = root.right;
+        root.right = root.left;
+        root.left = temp;
+
+        if (root.left != null) {
+            invertTree(root.left);
+        }
+
+        if (root.right != null) {
+            invertTree(root.right);
+        }
+
+        return root;
+    }
+
 
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
@@ -217,6 +313,14 @@ public class TreeProblems {
             }
             System.out.println(); 
         }
+
+        // Question 1 test 
+        List<Integer> res = getLargestValues(root);
+        System.out.println("Largest Value At Each Level: ");
+        for (int i : res) {
+            System.out.println(i);
+        }
+
 
 
     }
